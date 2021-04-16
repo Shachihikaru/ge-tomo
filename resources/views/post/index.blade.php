@@ -11,7 +11,7 @@
         </div>     
 
         <div class="form-group">
-            <label for="game_id">主に遊ぶゲーム</label>
+            <label for="game_id">遊ぶゲーム</label>
         <input type="text" class="form-control"　id="game_id" name="game_id">   
         </div>
 
@@ -29,8 +29,8 @@
             {{$post->content}}
             {{$post->game_id}}
             {{$post->start_at}}
-            <a href="/post/edit/{{$post->id}}" class="btn btn-success">編集</a>
-            <a href="/post/delete/{{$post->id}}" class="btn btn-danger">削除</a>
+            {{-- <a href="/post/edit/{{$post->id}}" class="btn btn-success">編集</a>
+            <a href="/post/delete/{{$post->id}}" class="btn btn-danger">削除</a> --}}
         </div>
     </div>
     @endforeach
