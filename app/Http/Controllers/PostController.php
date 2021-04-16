@@ -13,11 +13,11 @@ class PostController extends Controller
     }
     
     public function store(Request $request){
-        $content = $request->post;
+        $content = $request->content;
         $game_id = $request->game_id;
         $start_at = $request->start_at;
         $post = new Post();
-        $post->post = $content;
+        $post->content = $content;
         $post->game_id = $game_id;
         $post->start_at = $start_at;
         $post->save();
