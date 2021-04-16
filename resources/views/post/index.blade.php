@@ -6,7 +6,7 @@
     <h1>ゲー友</h1>    
     <form action="/post/store">
         <div class="form-group">
-            <label for="post">書き込み</label>
+            <label for="post">募集</label>
             <textarea class="form-control" id="content" name="content" rows="4"></textarea>
         </div>     
 
