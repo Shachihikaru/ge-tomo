@@ -21,6 +21,7 @@ Route::get('/post/store', 'PostController@store');
 Route::get('/post/edit/{id}', 'PostController@edit');
 Route::get('/post/update/{id}', 'PostController@update');
 Route::get('/post/delete/{id}', 'PostController@delete');
+Route::get('/post/message', 'MessageController@index');
 
 
 Auth::routes();
