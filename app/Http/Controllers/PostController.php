@@ -20,6 +20,8 @@ class PostController extends Controller
         $post->content = $content;
         $post->game_id = $game_id;
         $post->start_at = $start_at;
+        // dd($content);
+
         $post->save();
         
         return redirect('/post');
@@ -33,6 +35,8 @@ class PostController extends Controller
     public function update(Request $request,$id){
         $post = Post::where('id','=',$id)->first();
         $post->content = $request ->content;
+        $post->game_id = $request ->game_id;
+        $post->start_at = $request ->start_at;
         $post->save();
         return redirect('/post');
     }

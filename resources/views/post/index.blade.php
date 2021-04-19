@@ -5,32 +5,32 @@
 
     <h1>ゲー友</h1>    
     <form action="/post/store">
+        {{ csrf_field() }}
         <div class="form-group">
             <label for="post">募集</label>
             <textarea class="form-control" id="content" name="content" rows="4"></textarea>
         </div>     
-
+        
         <div class="form-group">
             <label for="game_id">遊ぶゲーム</label>
-        <input type="text" class="form-control"　id="game_id" name="game_id">   
+              <input type="number" id="game_id" name="game_id">
         </div>
 
-        <div class="form-group">
+         <div class="form-group">
             <label for="start_at">時間帯</label>
-        <input type="time" class="form-control"　id="start_at" name="start_at">   
-        </div>
+             <input type="datetime-local"  id="start_at" name="start_at">   
+        </div> 
 
-        <input class="btn btn-primary" type="submit" value='送信'>
+        <input class="btn btn-primary" type="submit" value='投稿'>
     </form>
 
      @foreach($posts as $post)
     <div class="card mt-4">
         <div class="card-body">
             {{$post->content}}
-            {{$post->game_id}}
             {{$post->start_at}}
-            {{-- <a href="/post/edit/{{$post->id}}" class="btn btn-success">編集</a>
-            <a href="/post/delete/{{$post->id}}" class="btn btn-danger">削除</a> --}}
+            <a href="/post/edit/{{$post->id}}" class="btn btn-success">編集</a>
+            <a href="/post/delete/{{$post->id}}" class="btn btn-danger">削除</a>
         </div>
     </div>
     @endforeach
