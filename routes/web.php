@@ -24,6 +24,6 @@ Route::get('/post/delete/{id}', 'PostController@delete');
 Route::get('/post/message', 'MessageController@index');
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
