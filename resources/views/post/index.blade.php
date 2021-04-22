@@ -4,6 +4,7 @@
 <div class="container">
 
     <h1>ゲー友</h1>    
+    <a href="post/profile">プロフィール</a>
     <form action="/post/store">
         {{ csrf_field() }}
         <div class="form-group">

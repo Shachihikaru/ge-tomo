@@ -22,6 +22,7 @@ Route::get('/post/edit/{id}', 'PostController@edit');
 Route::get('/post/update/{id}', 'PostController@update');
 Route::get('/post/delete/{id}', 'PostController@delete');
 Route::get('/post/message', 'MessageController@index');
+Route::get('/post/profile', 'ProfileController@index');
 
 
 Auth::routes();
