@@ -44,10 +44,10 @@
                     <button type="submit" class="mt-3 btn samazon-submit-button w-100">
                         ログイン
                     </button>
-
+                    {{-- 
                     <a class="btn btn-link mt-3 d-flex justify-content-center samazon-login-text" href="{{ route('password.request') }}">
                         パスワードをお忘れの場合
-                    </a>
+                    </a> --}}
                 </div>
             </form>
 

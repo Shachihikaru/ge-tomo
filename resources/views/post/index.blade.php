@@ -9,13 +9,17 @@
         <div class="form-group">
             <label for="post">募集</label>
             <textarea class="form-control" id="content" name="content" rows="4"></textarea>
-        </div>     
+        </div>    
         
-        <div class="form-group">
+        <div> 
             <label for="game_id">遊ぶゲーム</label>
-              <input type="number" id="game_id" name="game_id">
+            <select id="game_id" name="game_id" class="form-control">
+                @foreach (config('game') as $key => $value)
+                <option value="{{$key}}">{{$value}}</option>
+                @endforeach
+            </select>
         </div>
-
+        
          <div class="form-group">
             <label for="start_at">時間帯</label>
              <input type="datetime-local"  id="start_at" name="start_at">   
@@ -28,7 +32,9 @@
     <div class="card mt-4">
         <div class="card-body">
             {{$post->content}}
+            {{config('game')[$post->game_id]}}
             {{$post->start_at}}
+            {{$post->name}}
             <a href="/post/edit/{{$post->id}}" class="btn btn-success">編集</a>
             <a href="/post/delete/{{$post->id}}" class="btn btn-danger">削除</a>
         </div>

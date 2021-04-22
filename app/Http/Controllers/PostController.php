@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     public function index(){
-        $posts = Post::get();
+        $posts = Post::join('users','posts.user_id','=','users.id')->get();
+        
         return view("post/index",compact('posts'));
     }
     
@@ -16,10 +18,12 @@ class PostController extends Controller
         $content = $request->content;
         $game_id = $request->game_id;
         $start_at = $request->start_at;
+        $user_id = Auth::id();
         $post = new Post();
         $post->content = $content;
         $post->game_id = $game_id;
         $post->start_at = $start_at;
+        $post->user_id = $user_id;
         // dd($content);
 
         $post->save();
