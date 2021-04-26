@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function mypage(){
+    public function index(){
         $profiles = Profile::select('profiles.id as profile_id', 'users.id', 'users.name', 'profiles.content', 'profiles.timezone')->join('users','profiles.user_id','=','users.id')->get();
         
-        return view("profile/mypage",compact('profiles'));
+        return view("profile/index",compact('profiles'));
     }
-
+    
     public function store(Request $request){
         $content = $request->content;
         $timezone = $request->timezone;

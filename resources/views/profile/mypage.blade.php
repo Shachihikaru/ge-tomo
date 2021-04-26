@@ -11,6 +11,11 @@
         <a href="/profile/edit/{{$profile->profile_id}}" class="btn btn-success">編集</a>
     </div>
 </div>
+<form action="/post">
+    <input class="btn btn-primary" type="submit" value='戻る'>
+</form>
+
 @endforeach
+
 
 @endsection

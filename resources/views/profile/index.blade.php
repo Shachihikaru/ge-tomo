@@ -17,7 +17,12 @@
             @endforeach
         </select>
     </div>
+    </form>
+
     <input class="btn btn-primary" type="submit" value='送信'>
+    <form action="/post">
+        <input class="btn btn-primary" type="submit" value='戻る'>
+    </form>
 
     {{-- <div class="card mt-4">
         <div class="card-body">
