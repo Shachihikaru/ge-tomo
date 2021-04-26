@@ -8,38 +8,50 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function index(){
-        $profiles = Profile::get();
+    public function mypage(){
+        $profiles = Profile::select('profiles.id as profile_id', 'users.id', 'users.name', 'profiles.content', 'profiles.timezone')->join('users','profiles.user_id','=','users.id')->get();
         
-        return view("profile/index",compact('profiles'));
+        return view("profile/mypage",compact('profiles'));
     }
-    
+
     public function store(Request $request){
         $content = $request->content;
-        $game_id = $request->timezone;
+        $timezone = $request->timezone;
         $user_id = Auth::id();
         $profile = new Profile();
         $profile->content = $content;
-        $profile->game_id = $timezone;
+        $profile->timezone = $timezone;
         $profile->user_id = $user_id;
         // dd($content);
-
-        $post->save();
+        $profile->save();
         
-        return redirect('/post');
+        return redirect('/profile/mypage');
     }   
     
+    public function mypage(){
+        $profiles = Profile::select('profiles.id as profile_id', 'users.id', 'users.name', 'profiles.content', 'profiles.timezone')->join('users','profiles.user_id','=','users.id')->get();
+        
+        return view("profile/mypage",compact('profiles'));
+    }
+
     public function edit($id){
-        $post = Post::where('id','=',$id)->first();
-        return view("post/edit",compact('post'));
+        $profile = Profile::where('id','=',$id)->first();
+        return view("profile/edit",compact('profile'));
     }
     
     public function update(Request $request,$id){
-        $post = Post::where('id','=',$id)->first();
-        $post->content = $request ->content;
-        $post->game_id = $request ->game_id;
-        $post->start_at = $request ->start_at;
-        $post->save();
-        return redirect('/post');
+        $profile = Profile::where('id','=',$id)->first();
+        $profile->content = $request ->content;
+        $profile->timezone = $request ->timezone;
+        $profile->save();
+        return redirect('/profile/mypage');
     }
+    
+    public function delete($profile_id){
+        $profile = Profile::where('id','=',$profile_id)->first();
+        $profile->delete();
+
+        return redirect('/profile/mypage');    
+    }
+
 }

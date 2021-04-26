@@ -21,9 +21,14 @@ Route::get('/post/store', 'PostController@store');
 Route::get('/post/edit/{id}', 'PostController@edit');
 Route::get('/post/update/{id}', 'PostController@update');
 Route::get('/post/delete/{id}', 'PostController@delete');
-Route::get('/post/message', 'MessageController@index');
-Route::get('/post/profile', 'ProfileController@index');
 
+Route::get('/post/profile', 'ProfileController@index');
+Route::get('/profile/create', 'ProfileController@create');
+Route::get('/profile/store', 'ProfileController@store');
+Route::get('/profile/mypage', 'ProfileController@mypage');
+Route::get('/profile/edit/{id}', 'ProfileController@edit');
+Route::get('/profile/update/{id}', 'ProfileController@update');
+Route::get('/profile/delete/{id}', 'ProfileController@delete');
 
 Auth::routes();
 

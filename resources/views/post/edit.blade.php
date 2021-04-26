@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -13,7 +14,11 @@
         
         <div class="form-group">
             <label for="game_id">遊ぶゲーム</label>
-              <input type="number" id="game_id" name="game_id">
+              <select id="game_id" name="game_id" class="form-control">
+                @foreach (config('game') as $key => $value)
+                <option value="{{$key}}">{{$value}}</option>
+                @endforeach
+            </select>
         </div>
 
          <div class="form-group">

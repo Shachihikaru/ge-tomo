@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     public function index(){
-        $posts = Post::join('users','posts.user_id','=','users.id')->get();
-        
+        $posts = Post::select('posts.id as post_id', 'users.id', 'users.name', 'posts.content', 'posts.game_id', 'posts.start_at')->join('users','posts.user_id','=','users.id')->get();
+
         return view("post/index",compact('posts'));
     }
     
@@ -24,20 +24,19 @@ class PostController extends Controller
         $post->game_id = $game_id;
         $post->start_at = $start_at;
         $post->user_id = $user_id;
-        // dd($content);
 
         $post->save();
         
         return redirect('/post');
     }   
     
-    public function edit($id){
-        $post = Post::where('id','=',$id)->first();
+    public function edit($post_id){
+        $post = Post::where('id','=',$post_id)->first();
         return view("post/edit",compact('post'));
     }
     
-    public function update(Request $request,$id){
-        $post = Post::where('id','=',$id)->first();
+    public function update(Request $request,$post_id){
+        $post = Post::where('id','=',$post_id)->first();
         $post->content = $request ->content;
         $post->game_id = $request ->game_id;
         $post->start_at = $request ->start_at;
@@ -45,8 +44,8 @@ class PostController extends Controller
         return redirect('/post');
     }
 
-    public function delete($id){
-        $post = Post::where('id','=',$id)->first();
+    public function delete($post_id){
+        $post = Post::where('id','=',$post_id)->first();
         $post->delete();
 
         return redirect('/post');    

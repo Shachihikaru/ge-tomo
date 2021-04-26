@@ -4,9 +4,10 @@
 <div class="container">
 
     <h1>ゲー友</h1>    
-    <a href="post/profile">プロフィール</a>
+    <p><a href="profile/mypage">マイプロフィール</a>
+    <p><a href="post/profile">マイプロフィール作成</a></p>
+
     <form action="/post/store">
-        {{ csrf_field() }}
         <div class="form-group">
             <label for="post">募集</label>
             <textarea class="form-control" id="content" name="content" rows="4"></textarea>
@@ -36,8 +37,8 @@
             {{config('game')[$post->game_id]}}
             {{$post->start_at}}
             {{$post->name}}
-            <a href="/post/edit/{{$post->id}}" class="btn btn-success">編集</a>
-            <a href="/post/delete/{{$post->id}}" class="btn btn-danger">削除</a>
+            <a href="/post/edit/{{$post->post_id}}" class="btn btn-success">編集</a>
+            <a href="/post/delete/{{$post->post_id}}" class="btn btn-danger">削除</a>
         </div>
     </div>
     @endforeach
