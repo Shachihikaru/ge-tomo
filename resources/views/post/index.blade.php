@@ -5,7 +5,6 @@
 
     <h1>ゲー友</h1>    
     <p><a href="profile/mypage">マイプロフィール</a>
-    <p><a href="post/profile">マイプロフィール作成</a></p>
 
     <form action="/post/store">
         <div class="form-group">
@@ -31,14 +30,19 @@
     </form>
 
      @foreach($posts as $post)
-    <div class="card mt-4">
-        <div class="card-body">
-            {{$post->content}}
-            {{config('game')[$post->game_id]}}
-            {{$post->start_at}}
-            {{$post->name}}
-            <a href="/post/edit/{{$post->post_id}}" class="btn btn-success">編集</a>
-            <a href="/post/delete/{{$post->post_id}}" class="btn btn-danger">削除</a>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h2>{{$post->content}}</h2>
+                <h5 class="card-title">募集ゲーム</h5>
+                    <p>{{config('game')[$post->game_id]}}</p>
+                    <h5 class="card-title">遊ぶ時間</h5>
+                        <p>{{$post->start_at}}</p>
+                
+                        <h5 class="card-title">ユーザープロフィール</h5>
+                     <p><a href="/profile/detail/{{$post->user_id}}" class="btn btn-primary">{{$post->name}}</a></p>
+           
+                    <a href="/post/edit/{{$post->post_id}}" class="btn btn-success">編集</a>
+                    <a href="/post/delete/{{$post->post_id}}" class="btn btn-danger">削除</a>
         </div>
     </div>
     @endforeach
