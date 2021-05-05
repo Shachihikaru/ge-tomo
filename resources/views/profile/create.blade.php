@@ -18,17 +18,5 @@
         </select>
     </div>
     <input class="btn btn-primary" type="submit" value='送信'>
-    </form>
-        <a href="/post" class="btn btn-primary">戻る</a>
-
-    {{-- <div class="card mt-4">
-        <div class="card-body">
-            {{$profile->content}}
-            {{config('timezone')[$profile->timezone]}}
-            <a href="/post/edit/{{$profile->profile_id}}" class="btn btn-success">編集</a>
-            <a href="/post/delete/{{$profile->profile_id}}" class="btn btn-danger">削除</a>
-        </div>
-    </div> --}}
-
-</div>
-@endsection
+  </div>
+  @endsection

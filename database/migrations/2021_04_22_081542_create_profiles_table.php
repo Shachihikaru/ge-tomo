@@ -19,6 +19,7 @@ class CreateProfilesTable extends Migration
             $table->string('content');
             $table->integer('timezone');
             $table->timestamps();
+            $table->unique('user_id');
         });
     }
 

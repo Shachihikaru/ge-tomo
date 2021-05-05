@@ -1,21 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-@foreach($profiles as $profile)
 <div class="text-center">
     <h1>マイプロフィール</h1>  
 
     <div class="card-body">
-        {{$profile->content}}
-        {{config('timezone')[$profile->timezone]}}
-        <a href="/profile/edit/{{$profile->profile_id}}" class="btn btn-success">編集</a>
+        <h2>自己紹介</h2>
+        <p>{{$profile->content}}</p>
+        <h2>時間帯</h2>
+        <p>{{config('timezone')[$profile->timezone]}}</p>
+        <a href="/profile/edit/{{$profile->id}}" class="btn btn-success">編集</a>
     </div>
 </div>
-<form action="/post">
-    <input class="btn btn-primary" type="submit" value='戻る'>
-</form>
+<a href="/post" class="btn btn-primary">戻る</a>
 
-@endforeach
 
 
 @endsection

@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     public function index(){
-        $posts = Post::select('posts.id as post_id', 'users.id', 'users.name', 'posts.content', 'posts.game_id', 'posts.start_at')->join('users','posts.user_id','=','users.id')->get();
-
+        $posts = Post::select('posts.id as post_id', 'posts.user_id', 'users.name', 'posts.content', 'posts.game_id', 'posts.start_at')
+        ->join('users','posts.user_id','=','users.id')
+        ->get();
         return view("post/index",compact('posts'));
     }
     
