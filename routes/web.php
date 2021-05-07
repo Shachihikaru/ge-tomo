@@ -14,12 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/post', 'PostController@index');
 Route::get('/post/create', 'PostController@create');
 Route::get('/post/store', 'PostController@store');
 Route::get('/post/edit/{id}', 'PostController@edit');
 Route::get('/post/update/{id}', 'PostController@update');
 Route::get('/post/delete/{id}', 'PostController@delete');
+Route::get('/post/search', 'PostController@search');
 
 Route::get('/post/profile', 'ProfileController@index');
 Route::get('/profile/create', 'ProfileController@create');
@@ -28,6 +29,8 @@ Route::get('/profile/detail/{id}', 'ProfileController@detail');
 Route::get('/profile/edit/{id}', 'ProfileController@edit');
 Route::get('/profile/update/{id}', 'ProfileController@update');
 Route::get('/profile/delete/{id}', 'ProfileController@delete');
+Route::get('/profile/search', 'ProfileController@search');
+
 
 Auth::routes();
 

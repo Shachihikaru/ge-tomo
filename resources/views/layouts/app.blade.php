@@ -38,6 +38,18 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <form action="/post/search">
+                            <div class="input-group">
+                                <select id="game_id" name="game_id" class="form-control">
+                                    @foreach (config('game') as $key => $value)
+                                    <option value="{{$key}}">{{$value}}</option>
+                                    @endforeach                                
+                                </select>
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-default">検索</button>
+                                </span>
+                            </div>
+                        </form>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">

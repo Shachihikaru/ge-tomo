@@ -74,4 +74,11 @@ class ProfileController extends Controller
         }
         return view("profile/detail",compact('profile'));
     }
+    function search(Request $request) {
+        $keyword = $request -> keyword;
+        Post::where('content', 'like', "%$kwyword%")->get();
+        return redirect('/profile');
+
+
+    }
 }

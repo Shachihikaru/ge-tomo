@@ -12,6 +12,7 @@ class PostController extends Controller
         $posts = Post::select('posts.id as post_id', 'posts.user_id', 'users.name', 'posts.content', 'posts.game_id', 'posts.start_at')
         ->join('users','posts.user_id','=','users.id')
         ->get();
+        
         return view("post/index",compact('posts'));
     }
     
@@ -50,5 +51,14 @@ class PostController extends Controller
         $post->delete();
 
         return redirect('/post');    
+    }
+    
+    function search(Request $request) {
+        // ユーザーが選択した、game_idを取得
+        $game_id = $request->game_id;
+        // postsテーブルのcontentカラムの中から、game_idが部分一致するものを取得
+        $posts = Post::where('content', 'like', "%$game_id%")->get();
+        // view側にpostsの配列を渡す
+        return view('post',compact('posts'));
     }
 }
