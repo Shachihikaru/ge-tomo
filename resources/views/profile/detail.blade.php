@@ -5,6 +5,7 @@
     <h1>プロフィール</h1>  
 
     <div class="card-body">
+        {{$profile->name}}
         {{$profile->content}}
         {{config('timezone')[$profile->timezone]}}
 

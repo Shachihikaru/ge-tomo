@@ -62,23 +62,27 @@ class ProfileController extends Controller
         return redirect('/profile/mypage');    
     }
     public function detail($id){
-        $profile = Profile::where('user_id','=',$id)->first();
+        $profile = Profile::select('profiles.id as profile_id', 'users.id', 'users.name', 'profiles.content', 'profiles.timezone')
+        ->join('users','profiles.user_id','=','users.id')
+        ->where('user_id','=',$id)->first();
         if($profile == null){
             $user_id = $id;
             $profile = new Profile();
             $profile->content = "";
             $profile->timezone = 1;
             $profile->user_id = $user_id;
-        
             $profile->save();
         }
         return view("profile/detail",compact('profile'));
     }
-    function search(Request $request) {
-        $keyword = $request -> keyword;
-        Post::where('content', 'like', "%$kwyword%")->get();
-        return redirect('/profile');
+    public function search(Request $request){
+        $timezone = $request->timezone;
 
-
+        $profiles = Profile::select('profiles.id as profile_id', 'users.id', 'users.name', 'profiles.content', 'profiles.timezone')
+        ->join('users','profiles.user_id','=','users.id')
+        ->where('timezone', '=', $timezone)
+        ->get();
+ 
+        return view("profile/search",compact('profiles'));
     }
 }

@@ -29,7 +29,10 @@ Route::get('/profile/detail/{id}', 'ProfileController@detail');
 Route::get('/profile/edit/{id}', 'ProfileController@edit');
 Route::get('/profile/update/{id}', 'ProfileController@update');
 Route::get('/profile/delete/{id}', 'ProfileController@delete');
+Route::get('/profile/mypage', 'ProfileController@mypage');
 Route::get('/profile/search', 'ProfileController@search');
+
+Route::get('/message/{user_id}', 'MessageController@message');
 
 
 Auth::routes();

@@ -3,9 +3,21 @@
 @section('content')
 <div class="container">
 
-    <h1>ゲー友</h1>    
+    <h1>ゲー友</h1>  
+    <form action="/profile/search">
+        <div class="input-group">
+                    <select id="timezone" name="timezone" class="form-control">
+                        @foreach (config('timezone') as $key => $value)
+                        <option value="{{$key}}">{{$value}}</option>
+                        @endforeach                                
+                    </select>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default">検索</button>
+                    </span>
+                </div>
+            </form>
         <div class="alert alert-info" role="alert">
-            <a href="profile/mypage" class="alert-link">マイプロフィール</a>
+            <a href="/profile/mypage" class="alert-link">マイプロフィール</a>
           </div>
 
     <form action="/post/store">
@@ -41,22 +53,12 @@
                     <h5 class="card-title">遊ぶ時間</h5>
                         <p>{{$post->start_at}}</p>
                         <p><a href="/profile/detail/{{$post->user_id}}" class="btn btn-primary">{{$post->name}}</a></p>
-           
-                    <a href="/post/edit/{{$post->post_id}}" class="btn btn-success">編集</a>
-                    <a href="/post/delete/{{$post->post_id}}" class="btn btn-danger">削除</a>
+                    @if($post->user_id == $user_id)
+                        <a href="/post/edit/{{$post->post_id}}" class="btn btn-success">編集</a>
+                        <a href="/post/delete/{{$post->post_id}}" class="btn btn-danger">削除</a>
+                    @endif
         </div>
     </div>
     @endforeach
-        {{-- @foreach($posts as $post)
-        <div class="card" >
-            <div class="card-body">
-                <h2>{{$post->content}}</h2>
-                <h5 class="card-title">募集ゲーム</h5>
-                    <p>{{config('game')[$post->game_id]}}</p>
-                    <h5 class="card-title">遊ぶ時間</h5>
-                        <p>{{$post->start_at}}</p>
-        </div>
-    </div>
-    @endforeach --}}
 </div>
 @endsection
