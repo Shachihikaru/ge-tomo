@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+html{
+    font-size: 90%;
+    margin: auto;
+    border: #b6c1ff solid 1px;
+    border-left: #b6d6ff solid 10px;
+    padding: 20px;
+    background: #fff;
+
+}
+
+body{
+    color: #333;
+    font-size: 3.0em;
+    margin: auto;
+}

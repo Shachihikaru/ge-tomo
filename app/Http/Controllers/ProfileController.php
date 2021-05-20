@@ -62,7 +62,7 @@ class ProfileController extends Controller
         return redirect('/profile/mypage');    
     }
     public function detail($id){
-        $profile = Profile::select('profiles.id as profile_id', 'users.id', 'users.name', 'profiles.content', 'profiles.timezone')
+        $profile = Profile::select('profiles.id as profile_id', 'users.id as user_id', 'users.name', 'profiles.content', 'profiles.timezone')
         ->join('users','profiles.user_id','=','users.id')
         ->where('user_id','=',$id)->first();
         if($profile == null){
@@ -77,11 +77,14 @@ class ProfileController extends Controller
     }
     public function search(Request $request){
         $timezone = $request->timezone;
-
-        $profiles = Profile::select('profiles.id as profile_id', 'users.id', 'users.name', 'profiles.content', 'profiles.timezone')
+        $content = $request->content;
+        $profile_search =  Profile::select('profiles.id as profile_id', 'users.id', 'users.name', 'profiles.content', 'profiles.timezone')
         ->join('users','profiles.user_id','=','users.id')
-        ->where('timezone', '=', $timezone)
-        ->get();
+        ->where('timezone', '=', $timezone);
+        if(isset($content)){
+            $profile_search->where('content','LIKE',"%$content%");
+        }
+        $profiles = $profile_search->get();
  
         return view("profile/search",compact('profiles'));
     }

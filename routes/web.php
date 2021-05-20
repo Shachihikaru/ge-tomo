@@ -32,7 +32,8 @@ Route::get('/profile/delete/{id}', 'ProfileController@delete');
 Route::get('/profile/mypage', 'ProfileController@mypage');
 Route::get('/profile/search', 'ProfileController@search');
 
-Route::get('/message/{user_id}', 'MessageController@message');
+Route::get('/message/list/{user_id}', 'MessageController@message');
+Route::post('/message/send/{user_id}', 'MessageController@send');
 
 
 Auth::routes();
